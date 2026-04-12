@@ -1,8 +1,37 @@
+-- ==========================================
+-- AKUMA HUB - UNIVERSAL LOADER
+-- ==========================================
+
 task.spawn(function()
-	local GameId = game.GameId
-	if GameId == 2809058507 then
-		loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/4f6f2b3ae4eed00d710d53d9ee203b18431d676fa84e8c85a69b68efbfe40caa/download"))()
-	elseif GameId == 6908588820 then
-		loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/3496c59fdcadfbb31b438bd6792c2c7a3fcb7883fa0726ab382a7a8e069bd46a/download"))()
-	end
+    local GameId = game.GameId
+    local scriptUrl = ""
+
+    -- Kiểm tra GameId để chọn URL tương ứng
+    if GameId == 2809058507 then
+        -- Game 1 (Ví dụ: Pet Simulator X hoặc game khác của bạn)
+        scriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/4f6f2b3ae4eed00d710d53d9ee203b18431d676fa84e8c85a69b68efbfe40caa/download"
+    elseif GameId == 6908588820 then
+        -- Game 2 (Anime Overload)
+        scriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/3496c59fdcadfbb31b438bd6792c2c7a3fcb7883fa0726ab382a7a8e069bd46a/download"
+    end
+
+    -- Thực thi nếu tìm thấy URL hợp lệ
+    if scriptUrl ~= "" then
+        local success, content = pcall(function()
+            return game:HttpGet(scriptUrl)
+        end)
+
+        if success and content then
+            local func, err = loadstring(content)
+            if func then
+                func()
+            else
+                warn("Lỗi biên dịch script: " .. tostring(err))
+            end
+        else
+            warn("Không thể tải script từ server!")
+        end
+    else
+        warn("GameId này không được hỗ trợ trong Akuma Hub!")
+    end
 end)
