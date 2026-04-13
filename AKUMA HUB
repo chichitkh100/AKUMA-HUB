@@ -2,7 +2,7 @@ task.spawn(function()
 	local GameId = game.GameId
 	if GameId == 3317771874 then
 		loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/4f6f2b3ae4eed00d710d53d9ee203b18431d676fa84e8c85a69b68efbfe40caa/download"))()
-	elseif GameId == 6401952734 then
+	elseif GameId == 7856269159 then
 		loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/3496c59fdcadfbb31b438bd6792c2c7a3fcb7883fa0726ab382a7a8e069bd46a/download"))()
 	end
 end)
